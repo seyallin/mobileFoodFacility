@@ -53,7 +53,7 @@ class Solr {
    * @return int|null
    *   Result indexing status.
    */
-  public function index($data) {
+  public function index(array $data) {
     $update = $this->getClient()->createUpdate();
 
     $documents = [];
@@ -78,14 +78,24 @@ class Solr {
     return $this->getClient()->update($update)->getStatus();
   }
 
+  /**
+   * Search mobile food places by address.
+   *
+   * @param $address
+   *   Address string.
+   *
+   * @return array|\Solarium\Core\Query\DocumentInterface[]
+   * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+   */
   public function search($address) {
     $query = $this->getClient()->createSelect();
     $query->setRows(1000);
-    //$query->setSorts();
-    if (empty($address)) {
-      $query->setQuery('!Status:EXPIRED');
-    }
-    else {
+    $query->setQuery('!Status:EXPIRED');
+
+    if (!empty($address)) {
       $geocode = $this->geoApi->getData($address);
       if (empty($geocode)) {
         return [];
@@ -93,7 +103,6 @@ class Solr {
       else {
         $geocode  = reset($geocode);
       }
-      $query->setQuery('!Status:EXPIRED');
       $helper = $query->getHelper();
       $query->createFilterQuery('Location')
         ->setQuery($helper
@@ -105,7 +114,5 @@ class Solr {
     $docs = $result->getDocuments();
     return $docs;
   }
-
-
 
 }

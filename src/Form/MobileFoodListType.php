@@ -9,17 +9,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Looking for mobile food places form.
+ */
 class MobileFoodListType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder->add('search', SearchType::class, [
-          'label' => 'Address: ',
-          'attr' => [
-            'placeholder' => 'Enter the looking address...',
-          ],
-        ]);
-        $builder->add('Submit', SubmitType::class);
 
-    }
+  /**
+   * {@inheritdoc}
+   */
+  public function buildForm(FormBuilderInterface $builder, array $options): void
+  {
+    $builder->add('search', SearchType::class, [
+      'label' => 'Address: ',
+      'attr' => [
+        'placeholder' => 'Enter the looking address...',
+      ],
+    ]);
+    $builder->add('Submit', SubmitType::class);
+
+  }
 }

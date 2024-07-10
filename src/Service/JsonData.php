@@ -16,14 +16,16 @@ class JsonData {
    */
   private CurlHttpClient $client;
 
-
-   public function __construct() {
-     $this->client = new CurlHttpClient([
-       'headers' => [
-         'Accept' => 'application/json',
-       ]
-     ]);
-   }
+  /**
+   * Constructor method.
+   */
+  public function __construct() {
+    $this->client = new CurlHttpClient([
+      'headers' => [
+        'Accept' => 'application/json',
+      ]
+    ]);
+  }
 
   /**
    * Get data by URl.

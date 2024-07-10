@@ -16,11 +16,13 @@ This task was realised by Symfony framework because I had 3 solutions: Drupal, S
 3. Make a local clone of this repository: `git clone git@github.com:seyallin/mobileFoodFacility.git project_name`
 4. Go to the project folder `cd project_name`
 4. Run docker container from command: `docker-compose up -d`
-5. Run script for creating indexes: `bin/console so: index`
-6. Run local server using symfony tool: `symfony server: start`
-7. Check the for using address: `2045 EVANS AVE`
-8. Checking the Address description by clicking on facility link.
-9. Stop server: `symfony server: stop`
+5. On this step might need to run the command: `sudo chown 8983 solr/data -R` for the container accessing to the local folder solr/data.
+6. Install the symfony project: `composer install`.
+7. Run script for creating indexes: `bin/console solr:indexing`
+8. Run local server using symfony tool: `symfony server:start`
+9. Check the for using address: `2045 EVANS AVE`
+10. Checking the Address description by clicking on facility link.
+11. Stop server: `symfony server: stop`
 
 ## Time Spending
 1. Prepare environment: 1h
@@ -38,4 +40,4 @@ Unfortunately, I wasted the time limits on 3h. The main issue was the developmen
 2. Also, I would like to add styles, The front part rebuild to the react Js solution.
 3. Migrate data from json to the internal database and do develop the entities related to this data.
 4. Extend the search form by filtering fields.
-
+5. Put all configurations to the config folder.

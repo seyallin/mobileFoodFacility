@@ -32,12 +32,33 @@ class MobileFood {
     $this->geocodeUrl = 'https://geocode.maps.co/search?api_key=668d7134a876b190532998bscb57b46';
   }
 
+  /**
+   * Get all mobile food places.
+   *
+   * @return mixed
+   * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+   */
   public function getAll() {
     // TODO: add caching.
     $data = $this->client->getData($this->dataUrl);
     return $data;
   }
 
+  /**
+   * Get single place.
+   *
+   * @param $id
+   *   Place id.
+   *
+   * @return false|mixed
+   * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+   * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+   */
   public function get($id) {
     // TODO: add caching.
     $data = $this->client->getData($this->dataUrl . '?objectid=' . $id);

@@ -2,23 +2,32 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpClient\CurlHttpClient;
-
 /**
  * Service for Json data mapping.
  */
 class GeoApi {
 
+  /**
+   * Api string.
+   *
+   * @var string
+   */
   private $api = 'https://geocode.maps.co/search?api_key=668d7134a876b190532998bscb57b46';
 
+  /**
+   * GeoAPi constructor.
+   *
+   * @param \App\Service\JsonData $client
+   *   Json data service.
+   */
   public function __construct(private JsonData $client) {
   }
 
   /**
    * Get data by URl.
    *
-   * @param $url
-   *   Url.
+   * @param string $address
+   *   Address string.
    *
    * @return mixed
    * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface

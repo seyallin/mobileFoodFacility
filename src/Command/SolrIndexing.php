@@ -4,10 +4,8 @@ namespace App\Command;
 
 use App\Service\MobileFood;
 use App\Service\Solr;
-use League\Csv\Reader;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -15,14 +13,22 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Solr indexing command.
  */
 #[AsCommand(
-  name:'solr:indexing',
+  name: 'solr:indexing',
   description: 'Solr indexing command.',
-  hidden: false,
-  aliases: ['solr:indexing']
+  aliases: ['solr:indexing'],
+  hidden: false
 )]
 class SolrIndexing extends Command {
 
-  public function __construct(private Solr $solr, private MobileFood $mobileFood) {
+  /**
+   * Constructor for solr command.
+   *
+   * @param \App\Service\Solr $solr
+   *   Solr service.
+   * @param \App\Service\MobileFood $mobileFood
+   *   MobileFood service.
+   */
+  public function __construct(private readonly Solr $solr, private readonly MobileFood $mobileFood) {
     parent::__construct();
   }
 
@@ -53,7 +59,6 @@ class SolrIndexing extends Command {
     }
     if (!empty($data)) {
       $this->solr->index($data);
-      $output->writeln('Indexing row: ' . $i);
     }
 
     $output->writeln('total rows: ' . count($records));
