@@ -1,0 +1,16 @@
+services:
+  solr:
+    image: solr
+    container_name: solr
+    ports:
+      - "8983:8983"
+    volumes:
+      - data:/var/solr:rw
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./solr/data
+      o: bind
