@@ -28,7 +28,7 @@ This task was realised by Symfony framework because I had 3 solutions: Drupal, S
 1. Prepare environment: 1h
 2. Coding: 2h
 3. Testing 0.5h
-4. Documentation 0.5h
+4. Documentation 0.6h
 
 ## Resume
 
@@ -41,3 +41,18 @@ Unfortunately, I wasted the time limits on 3h. The main issue was the developmen
 3. Migrate data from json to the internal database and do develop the entities related to this data.
 4. Extend the search form by filtering fields.
 5. Put all configurations to the config folder.
+
+## Short descriptions
+1. `src/Comand/SolrIndexing.php` - class for Symfony CLI. Make console command for indexing data to solr side.
+2. `src/Controller/HomeController` - controller class for the home page router.
+3. `src/Controller/MobileFoodDetaileController` - controller class for the mobile food detail page router.
+4. `src/Form/MobileFoodListType.php` - form class for the home page with searching form.
+5. `src/Service/GeoApi.php` - GeoApi class for getting geolocation information by address. It is using the free [external API](https://geocode.maps.co/).
+6. `src/Service/JsonData.php` - service of working with json data. It was used for getting data from the external data API with JSON format response.
+7. `src/Service/MobileFood.php` - service for getting data from external storage [data.sfgov.org](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat/data).
+8. `src/Service/Solr.php` - service of working with solr side.
+9. `templates/home/index.html.twig` - Home page template.
+10. `templates/mobile_food_details/index.html.twig` - Mobile food detail page template.
+11. `templates/base.html.twig` - base template that was extended in other templates.
+
+For the Solr working, I used  [PHP Solr Client](https://github.com/solariumphp/solarium) that has good documentation and is easy to work.
